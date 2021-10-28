@@ -31,28 +31,37 @@ const DisplayPokemon = (props) => {
   }, [props.pokemon]);
 
   return (
-    <div className="column is-one-quarter">
-      <h2>{props.pokemon}</h2>
-      <div>
-        <img src={pokemon.image} />
-        <ul>
-          <li>Height: {pokemon.height} dm</li>
-          <li>Weight: {pokemon.weight} dg</li>
-        </ul>
-        <h3>Type(s)</h3>
-        <ul>
-          {pokemon.types.map((type) => (
-            <li key={type.type.name}>{type.type.name}</li>
-          ))}
-        </ul>
-        <button
-          className="button is-custom"
-          onClick={() => props.toggleOnTeam(props.pokemon)}
-        >
-          {props.myTeam.includes(props.pokemon)
-            ? "Remove From Team"
-            : "Add To Team"}
-        </button>
+    <div className="column is-one-third">
+      <div className="card">
+        <p className="card-header-title">{props.pokemon}</p>
+        <div class="card-image">
+          <figure className="image">
+            <img src={pokemon.image} />
+          </figure>
+        </div>
+        <div className="card-content">
+          <div className="content">
+            <h4>Stats</h4>
+            <ul>
+              <li>Height: {pokemon.height} dm</li>
+              <li>Weight: {pokemon.weight} dg</li>
+            </ul>
+            <h4>Type(s)</h4>
+            <ul>
+              {pokemon.types.map((type) => (
+                <li key={type.type.name}>{type.type.name}</li>
+              ))}
+            </ul>
+            <button
+              className="button is-custom"
+              onClick={() => props.toggleOnTeam(props.pokemon)}
+            >
+              {props.myTeam.includes(props.pokemon)
+                ? "Remove From Team"
+                : "Add To Team"}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
