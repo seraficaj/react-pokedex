@@ -62,7 +62,7 @@ function App() {
               )}
             />
             <Route path="/myteam">
-              <MyTeam myTeam={myTeam} />
+              <MyTeam myTeam={myTeam} toggleOnTeam={toggleOnTeam}/>
             </Route>
           </Switch>
         </Row>
