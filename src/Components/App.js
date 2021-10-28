@@ -11,14 +11,14 @@ import MyTeam from "./MyTeam";
 
 function App() {
   const [pokeArray, setPokeArray] = useState([]);
-  const [display, setDisplay] = useState('');
+  const [display, setDisplay] = useState({});
 
   useEffect(() => {
     const fetchPokemon = async () => {
       const response = await fetch("https://pokeapi.co/api/v2/pokemon");
       const pokeData = await (response.json());
       setPokeArray(pokeData.results);
-      setDisplay(pokeData.results[0].name);
+      setDisplay(pokeData.results[0]);
     }
     fetchPokemon();
   }, [])
@@ -34,7 +34,10 @@ function App() {
         <Row>
           <Switch>
             <Route exact path="/" render={(routerProps) => (
-              <AllPokemon {...routerProps} pokeArray={pokeArray} display={display} />
+              <>
+              <AllPokemon handleOnclick={handleOnclick} pokeArray={pokeArray}/>
+              <DisplayPokemon pokemon={display} />
+              </>
             )}/>
             <Route path="/myteam" component={MyTeam} />
           </Switch>

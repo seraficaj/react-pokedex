@@ -8,9 +8,8 @@ const AllPokemon = (props) => {
   return (
     <>
       <Col sm={6} md={8}>
-        <PokemonList pokeArray={props.pokeArray} />
+        <PokemonList handleOnclick={props.handleOnclick} pokeArray={props.pokeArray} />
       </Col>
-      <DisplayPokemon name={props.display} />
     </>
   );
 };

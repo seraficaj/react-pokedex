@@ -11,7 +11,7 @@ const DisplayPokemon = (props) => {
   });
 
   const makeApiCall = async () => {
-    const url = (`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+    const url = (props.pokemon.url)
     const result = await fetch(url);
     const json = await result.json();
     console.log(json)
@@ -23,18 +23,18 @@ const DisplayPokemon = (props) => {
   }
 
   useEffect(async () => {
-   makeApiCall()}, [props.name]);
+   makeApiCall()}, [props.pokemon.url]);
   
   return (
     <Col sm={6} md={4}>
-      <h2>{props.name}</h2>
+      <h2>{props.pokemon.name}</h2>
       <ul>
           <li>Height: {pokemon.height} dm</li>
           <li>Weight: {pokemon.weight} dg</li>
       </ul>
       <h3>Type(s)</h3>
       <ul>
-          {pokemon.types.map(type => <li>{type.type.name}</li>)}
+        {pokemon.types.map(type => <li>{type.type.name}</li>)}
       </ul>
     </Col>
   );
