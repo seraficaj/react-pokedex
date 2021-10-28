@@ -11,8 +11,8 @@ const MainNavbar = () => (
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-            <Nav.Link><Link to="/">PokeDex</Link></Nav.Link>
-            <Nav.Link><Link to="/myteam">MyTeam</Link></Nav.Link>
+            <Link className="nav-link" to="/">PokeDex</Link>
+            <Link className="nav-link" to="/myteam">MyTeam</Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
