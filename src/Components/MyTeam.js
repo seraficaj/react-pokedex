@@ -1,10 +1,13 @@
-import Col from "react-bootstrap/Col";
 
-const MyTeam = () => {
+import DisplayPokemon from "./DisplayPokemon";
+
+const MyTeam = (props) => {
+  const teamMap = props.myTeam.map(pokemon => {
+    <DisplayPokemon pokemon={pokemon} />
+  })
+
   return (
-    <Col sm={6} md={4}>
-      <h2>My Team</h2>
-    </Col>
+  <h1>My Team</h1>
   );
 };
 

@@ -9,7 +9,7 @@ const DisplayPokemon = (props) => {
     height: "",
     weight: "",
     types: [],
-    image: ""
+    image: "",
   });
 
   const makeApiCall = async () => {
@@ -21,7 +21,7 @@ const DisplayPokemon = (props) => {
       height: json.height,
       weight: json.weight,
       types: json.types,
-      image: json.sprites.front_default
+      image: json.sprites.front_default,
     });
   };
 
@@ -32,7 +32,7 @@ const DisplayPokemon = (props) => {
   return (
     <Col xs={6} sm={6} md={4}>
       <Card>
-        <Card.Img variant="top" src={pokemon.image}/>
+        <Card.Img variant="top" src={pokemon.image} />
         <h3>{props.pokemon.name}</h3>
         <ul>
           <li>Height: {pokemon.height} dm</li>
@@ -44,7 +44,14 @@ const DisplayPokemon = (props) => {
             <li key={type.type.name}>{type.type.name}</li>
           ))}
         </ul>
-        <Button variant="primary" onClick={() => props.toggleOnTeam(props.pokemon.name)}>Add To Team</Button>
+        <Button
+          variant="primary"
+          onClick={() => props.toggleOnTeam(props.pokemon.name)}
+        >
+          {
+            props.myTeam.includes(props.pokemon.name) ? ('Remove From Team') : ('Add To Team')
+          }
+        </Button>
       </Card>
     </Col>
   );

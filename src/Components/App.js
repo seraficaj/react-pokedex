@@ -29,8 +29,11 @@ function App() {
   };
 
   const toggleOnTeam = (name) => {
-    if (!myTeam.includes(name)) {
+    if (!myTeam.includes(name) && myTeam.length < 6) {
       setTeam([...myTeam, name]);
+    } else {
+      let team = myTeam.filter(item => item !== name);
+      setTeam(team);
     }
   };
 
