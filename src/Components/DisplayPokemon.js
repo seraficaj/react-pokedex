@@ -25,7 +25,7 @@ const DisplayPokemon = (props) => {
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     makeApiCall();
   }, [props.pokemon]);
 
