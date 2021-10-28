@@ -1,9 +1,21 @@
 const PokemonList = (props) => {
   const PokeRender = props.pokeArray.map((pokemon, index) => {
-    return <li key={index} onClick={() => props.handleOnclick(pokemon.name)}>{pokemon.name}</li>;
+    return (
+      <div
+        className="card"
+        key={index}
+        onClick={() => props.handleOnclick(pokemon.name)}
+      >
+        <div className="card-header">
+        <p class="card-header-title">
+        {pokemon.name}
+        </p>
+        </div>
+      </div>
+    );
   });
 
-  return <ul>{PokeRender}</ul>;
+  return <>{PokeRender}</>;
 };
 
 export default PokemonList;
