@@ -5,7 +5,6 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 
 const DisplayPokemon = (props) => {
-  console.log(props);
   const [pokemon, setPokemon] = useState({
     height: "",
     weight: "",
@@ -17,7 +16,6 @@ const DisplayPokemon = (props) => {
     const url = props.pokemon.url;
     const result = await fetch(url);
     const json = await result.json();
-    console.log(json);
     setPokemon({
       ...pokemon,
       height: json.height,
@@ -43,10 +41,10 @@ const DisplayPokemon = (props) => {
         <h3>Type(s)</h3>
         <ul>
           {pokemon.types.map((type) => (
-            <li>{type.type.name}</li>
+            <li key={type.type.name}>{type.type.name}</li>
           ))}
         </ul>
-        <Button variant="primary">Add To Team</Button>
+        <Button variant="primary" onClick={() => props.toggleOnTeam(props.pokemon.name)}>Add To Team</Button>
       </Card>
     </Col>
   );

@@ -17,16 +17,22 @@ function App() {
   useEffect(() => {
     const fetchPokemon = async () => {
       const response = await fetch("https://pokeapi.co/api/v2/pokemon");
-      const pokeData = await (response.json());
+      const pokeData = await response.json();
       setPokeArray(pokeData.results);
       setDisplay(pokeData.results[0]);
-    }
+    };
     fetchPokemon();
-  }, [])
+  }, []);
 
-  const handleOnclick = (key) =>{
+  const handleOnclick = (key) => {
     setDisplay(pokeArray[key]);
-  }
+  };
+
+  const toggleOnTeam = (name) => {
+    if (!myTeam.includes(name)) {
+      setTeam([...myTeam, name]);
+    }
+  };
 
   return (
     <div>
@@ -34,13 +40,27 @@ function App() {
       <Container>
         <Row>
           <Switch>
-            <Route exact path="/" render={(routerProps) => (
-              <>
-              <AllPokemon handleOnclick={handleOnclick} pokeArray={pokeArray}/>
-              <DisplayPokemon pokemon={display} />
-              </>
-            )}/>
-            <Route path="/myteam" component={MyTeam} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <>
+                  <AllPokemon
+                    myTeam={myTeam}
+                    handleOnclick={handleOnclick}
+                    pokeArray={pokeArray}
+                  />
+                  <DisplayPokemon
+                    myTeam={myTeam}
+                    pokemon={display}
+                    toggleOnTeam={toggleOnTeam}
+                  />
+                </>
+              )}
+            />
+            <Route path="/myteam">
+              <MyTeam myTeam={myTeam} />
+            </Route>
           </Switch>
         </Row>
       </Container>
