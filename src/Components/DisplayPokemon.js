@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
+import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 const DisplayPokemon = (props) => {
   console.log(props);
@@ -8,34 +10,44 @@ const DisplayPokemon = (props) => {
     height: "",
     weight: "",
     types: [],
+    image: ""
   });
 
   const makeApiCall = async () => {
-    const url = (props.pokemon.url)
+    const url = props.pokemon.url;
     const result = await fetch(url);
     const json = await result.json();
-    console.log(json)
-    setPokemon({...pokemon,
-        height: json.height,
-        weight: json.weight,
-        types: json.types
-    })
-  }
+    console.log(json);
+    setPokemon({
+      ...pokemon,
+      height: json.height,
+      weight: json.weight,
+      types: json.types,
+      image: json.sprites.front_default
+    });
+  };
 
   useEffect(async () => {
-   makeApiCall()}, [props.pokemon.url]);
-  
+    makeApiCall();
+  }, [props.pokemon.url]);
+
   return (
-    <Col sm={6} md={4}>
-      <h2>{props.pokemon.name}</h2>
-      <ul>
+    <Col xs={6} sm={6} md={4}>
+      <Card>
+        <Card.Img variant="top" src={pokemon.image}/>
+        <h3>{props.pokemon.name}</h3>
+        <ul>
           <li>Height: {pokemon.height} dm</li>
           <li>Weight: {pokemon.weight} dg</li>
-      </ul>
-      <h3>Type(s)</h3>
-      <ul>
-        {pokemon.types.map(type => <li>{type.type.name}</li>)}
-      </ul>
+        </ul>
+        <h3>Type(s)</h3>
+        <ul>
+          {pokemon.types.map((type) => (
+            <li>{type.type.name}</li>
+          ))}
+        </ul>
+        <Button variant="primary">Add To Team</Button>
+      </Card>
     </Col>
   );
 };

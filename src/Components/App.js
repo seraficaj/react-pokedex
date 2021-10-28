@@ -12,6 +12,7 @@ import MyTeam from "./MyTeam";
 function App() {
   const [pokeArray, setPokeArray] = useState([]);
   const [display, setDisplay] = useState({});
+  const [myTeam, setTeam] = useState([]);
 
   useEffect(() => {
     const fetchPokemon = async () => {
