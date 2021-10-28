@@ -11,7 +11,7 @@ import MyTeam from "./MyTeam";
 
 function App() {
   const [pokeArray, setPokeArray] = useState([]);
-  const [display, setDisplay] = useState({});
+  const [display, setDisplay] = useState('');
   const [myTeam, setTeam] = useState([]);
 
   useEffect(() => {
@@ -19,13 +19,13 @@ function App() {
       const response = await fetch("https://pokeapi.co/api/v2/pokemon");
       const pokeData = await response.json();
       setPokeArray(pokeData.results);
-      setDisplay(pokeData.results[0]);
+      setDisplay(pokeData.results[0].name);
     };
     fetchPokemon();
   }, []);
 
-  const handleOnclick = (key) => {
-    setDisplay(pokeArray[key]);
+  const handleOnclick = (name) => {
+    setDisplay(name);
   };
 
   const toggleOnTeam = (name) => {

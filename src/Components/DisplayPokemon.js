@@ -15,7 +15,7 @@ const DisplayPokemon = (props) => {
   const makeApiCall = async () => {
     try {
 
-      const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${props.pokemon.name}`);
+      const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${props.pokemon}`);
       const json = await result.json();
       setPokemon({
         ...pokemon,
@@ -37,7 +37,7 @@ const DisplayPokemon = (props) => {
     <Col xs={6} sm={6} md={4}>
       <Card>
         <Card.Img variant="top" src={pokemon.image} />
-        <h3>{props.pokemon.name}</h3>
+        <h3>{props.pokemon}</h3>
         <ul>
           <li>Height: {pokemon.height} dm</li>
           <li>Weight: {pokemon.weight} dg</li>
@@ -50,10 +50,10 @@ const DisplayPokemon = (props) => {
         </ul>
         <Button
           variant="primary"
-          onClick={() => props.toggleOnTeam(props.pokemon.name)}
+          onClick={() => props.toggleOnTeam(props.pokemon)}
         >
           {
-            props.myTeam.includes(props.pokemon.name) ? ('Remove From Team') : ('Add To Team')
+            props.myTeam.includes(props.pokemon) ? ('Remove From Team') : ('Add To Team')
           }
         </Button>
       </Card>
