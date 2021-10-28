@@ -1,3 +1,4 @@
-.btn-primary {
+button.is-custom {
     background-color: darkorange;
+    color:white;
 }
