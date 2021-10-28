@@ -9,7 +9,6 @@ const MyTeam = (props) => {
 
   return (
     <>
-      <h1>My Team</h1>
       {teamMap}
     </>
   );

@@ -35,32 +35,36 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <MainNavbar />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <>
-              <AllPokemon
-                myTeam={myTeam}
-                handleOnclick={handleOnclick}
-                pokeArray={pokeArray}
-              />
-              <DisplayPokemon
-                myTeam={myTeam}
-                pokemon={display}
-                toggleOnTeam={toggleOnTeam}
-              />
-            </>
-          )}
-        />
-        <Route path="/myteam">
-          <MyTeam myTeam={myTeam} toggleOnTeam={toggleOnTeam} />
-        </Route>
-      </Switch>
-    </div>
+      <div className="container">
+        <div class="columns">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <>
+                  <AllPokemon
+                    myTeam={myTeam}
+                    handleOnclick={handleOnclick}
+                    pokeArray={pokeArray}
+                  />
+                  <DisplayPokemon
+                    myTeam={myTeam}
+                    pokemon={display}
+                    toggleOnTeam={toggleOnTeam}
+                  />
+                </>
+              )}
+            />
+            <Route path="/myteam">
+              <MyTeam myTeam={myTeam} toggleOnTeam={toggleOnTeam} />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </>
   );
 }
 
