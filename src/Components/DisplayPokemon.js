@@ -13,21 +13,25 @@ const DisplayPokemon = (props) => {
   });
 
   const makeApiCall = async () => {
-    const url = props.pokemon.url;
-    const result = await fetch(url);
-    const json = await result.json();
-    setPokemon({
-      ...pokemon,
-      height: json.height,
-      weight: json.weight,
-      types: json.types,
-      image: json.sprites.front_default,
-    });
+    try {
+
+      const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${props.pokemon.name}`);
+      const json = await result.json();
+      setPokemon({
+        ...pokemon,
+        height: json.height,
+        weight: json.weight,
+        types: json.types,
+        image: json.sprites.front_default,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(async () => {
     makeApiCall();
-  }, [props.pokemon.url]);
+  }, [props.pokemon]);
 
   return (
     <Col xs={6} sm={6} md={4}>
