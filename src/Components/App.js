@@ -23,8 +23,8 @@ function App() {
     fetchPokemon();
   }, [])
 
-  const handleOnclick = (evt) =>{
-    setDisplay(evt.target.innerText);
+  const handleOnclick = (key) =>{
+    setDisplay(pokeArray[key]);
   }
 
   return (
