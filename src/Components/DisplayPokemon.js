@@ -8,27 +8,27 @@ const DisplayPokemon = (props) => {
     image: "",
   });
 
-  const makeApiCall = async () => {
-    try {
-      const result = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${props.pokemon}`
-      );
-      const json = await result.json();
-      setPokemon({
-        ...pokemon,
-        height: json.height,
-        weight: json.weight,
-        types: json.types,
-        image: json.sprites.front_default,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
+    const makeApiCall = async () => {
+        try {
+            const result = await fetch(
+                `https://pokeapi.co/api/v2/pokemon/${props.pokemon}`
+            );
+            const json = await result.json();
+            setPokemon({
+                ...pokemon,
+                height: json.height,
+                weight: json.weight,
+                types: json.types,
+                image: json.sprites.front_default,
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     makeApiCall();
-  }, [props.pokemon]);
+}, [props.pokemon, pokemon]);
 
   return (
     <div className="column is-one-third">
